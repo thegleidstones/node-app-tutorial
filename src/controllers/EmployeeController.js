@@ -1,5 +1,6 @@
 var Employee = require('../model/Empolyee');
 var Role = require('../model/Role');
+var State = require('../model/State');
 var sequelize = require('../model/database');
 
 const controller = {}
@@ -112,5 +113,24 @@ controller.delete = async (req, res) => {
     })
     res.json({success: true, deleted: del, message: "Excluído com sucesso!"});
 }
+
+State.create({
+    state:  'GOIAS',
+    fu: 'GO'
+});
+
+//Create role
+Role.create({
+    role:  'Admin'
+});
+
+// create employee
+Employee.create({
+    name: 'Malena Morgan',
+    email:  'malena@mail.com',
+    address: 'California Cll 108',
+    phone: '123456789',
+    roleId:1
+});
 
 module.exports = controller;

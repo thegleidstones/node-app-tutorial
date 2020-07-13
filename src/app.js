@@ -17,9 +17,11 @@ app.use((req, res, next) => {
 // importing routes
 const employeeRouters = require('./routes/EmployeeRoute')
 const roleRouters = require('./routes/RoleRoute')
+const stateRouters = require('./routes/StateRoute')
 // Route
 app.use('/employee', employeeRouters);
 app.use('/role', roleRouters);
+app.use('/state', stateRouters);
 /*
 app.use('/test', (req, res) => {
     res.send("Test route");
