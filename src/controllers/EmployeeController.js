@@ -82,7 +82,14 @@ controller.get = async (req, res) => {
     const { id } = req.params;
     const data = await Employee.findAll({
         where: { id: id },
-        include: [Role, City]
+        include: [
+            {
+                model: City, include: State
+            },
+            {
+                model: Role
+            }
+        ]
     })
     .then(function(data) {
         return data;
@@ -147,7 +154,7 @@ Employee.create({
     address: 'California Cll 108',
     phone: '123456789',
     roleId:1,
-    cityId: 1
+    cityId: 4
 });
 
 module.exports = controller;
