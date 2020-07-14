@@ -1,6 +1,7 @@
-var Employee = require('../model/Empolyee');
+var Employee = require('../model/Employee');
 var Role = require('../model/Role');
 var State = require('../model/State');
+var City = require('../model/City');
 var sequelize = require('../model/database');
 
 const controller = {}
@@ -30,14 +31,15 @@ controller.testdata = async (req, res) => {
 }
 
 controller.create = async (req, res) => {
-    const {name, email, address, phone, role} = req.body;
+    const {name, email, address, phone, role, city} = req.body;
 
     const data = await Employee.create({
         name: name,
         email: email,
         address: address,
         phone: phone,
-        roleId: role
+        roleId: role,
+        cityId: city
     })
     .then(function(data) {
         return data;
@@ -56,9 +58,17 @@ controller.create = async (req, res) => {
 
 controller.list = async (req, res) => {
     const data = await Employee.findAll({
-        include: [Role]
+        include: [
+            {
+                model: City, include: State
+            },
+            {
+                model: Role
+            }
+        ]
     })
     .then(function(data) {
+        console.log(data);
         return data;
     })
     .catch(error => {
@@ -72,7 +82,7 @@ controller.get = async (req, res) => {
     const { id } = req.params;
     const data = await Employee.findAll({
         where: { id: id },
-        include: [Role]
+        include: [Role, City]
     })
     .then(function(data) {
         return data;
@@ -86,13 +96,14 @@ controller.get = async (req, res) => {
 
 controller.update = async (req, res) => {
     const { id } = req.params;
-    const {name, email, address, phone, role} = req.body;
+    const {name, email, address, phone, role, city} = req.body;
     const data = await Employee.update({
         name: name,
         email: email,
         address: address,
         phone: phone,
-        roleId: role
+        roleId: role,
+        cityId: city,
     },
     {    
         where: {id: id}
@@ -119,6 +130,11 @@ State.create({
     fu: 'GO'
 });
 
+City.create({
+    name: 'Jataí',
+    stateId: 1
+})
+
 //Create role
 Role.create({
     role:  'Admin'
@@ -130,7 +146,8 @@ Employee.create({
     email:  'malena@mail.com',
     address: 'California Cll 108',
     phone: '123456789',
-    roleId:1
+    roleId:1,
+    cityId: 1
 });
 
 module.exports = controller;

@@ -18,10 +18,12 @@ app.use((req, res, next) => {
 const employeeRouters = require('./routes/EmployeeRoute')
 const roleRouters = require('./routes/RoleRoute')
 const stateRouters = require('./routes/StateRoute')
+const cityRouters = require('./routes/CityRoute')
 // Route
 app.use('/employee', employeeRouters);
 app.use('/role', roleRouters);
 app.use('/state', stateRouters);
+app.use('/city', cityRouters);
 /*
 app.use('/test', (req, res) => {
     res.send("Test route");

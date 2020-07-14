@@ -6,6 +6,7 @@ var sequelize = require('./database');
 
 // import model for FK roleID
 var Role = require('./Role');
+var City = require('./City');
 
 var Employee = sequelize.define('employee', {
     id: {
@@ -24,12 +25,20 @@ var Employee = sequelize.define('employee', {
             model: Role,
             key: 'id'
         }
+    },
+    cityId: {
+        type: Sequelize.INTEGER,
+        references: {
+            model: City,
+            key: 'id'
+        }
     }
 },
 {
     timestamps: false,
 });
 
-Employee.belongsTo(Role)
+Employee.belongsTo(Role);
+Employee.belongsTo(City);
 
 module.exports = Employee
