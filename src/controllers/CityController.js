@@ -57,6 +57,19 @@ controller.get = async (req, res) => {
     res.json({success: true, data: data});
 }
 
+controller.xlsx = async (req, res) => {
+    const query = 'SELECT C.ID, C.NAME, S.STATE, S.FU FROM cities C LEFT JOIN states S ON C.stateId = S.id'
+    const data = await sequelize.query(query)
+    .then(function(data) {
+        return data;
+    })
+    .catch(error => {
+        return error;
+    })
+
+    res.json({success: true, data: data});
+}
+
 controller.update = async (req, res) => {
     const { id } = req.params;
     const {name, state} = req.body;

@@ -3,6 +3,7 @@ const router = express.Router();
 const stateController = require('../controllers/StateController')
 
 router.get('/list', stateController.list);
+router.get('/xlsx', stateController.xlsx);
 router.get('/get/:id', stateController.get);
 router.post('/create', stateController.create);
 router.post('/update/:id', stateController.update);

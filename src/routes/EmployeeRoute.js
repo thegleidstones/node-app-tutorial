@@ -9,6 +9,7 @@ router.get('/waka', (req, res) => {
 router.get('/test', employeeController.test);
 router.get('/testdata', employeeController.testdata);
 router.get('/list', employeeController.list);
+router.get('/xlsx', employeeController.xlsx);
 router.get('/get/:id', employeeController.get);
 router.post('/create', employeeController.create);
 router.post('/update/:id', employeeController.update);

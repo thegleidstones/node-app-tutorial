@@ -3,6 +3,7 @@ const router = express.Router();
 const roleController = require('../controllers/roleController')
 
 router.get('/list', roleController.list);
+router.get('/xlsx', roleController.xlsx);
 router.get('/get/:id', roleController.get);
 router.post('/create', roleController.create);
 router.post('/update/:id', roleController.update);

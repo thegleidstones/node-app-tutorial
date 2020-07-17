@@ -52,6 +52,19 @@ controller.get = async (req, res) => {
     res.json({success: true, data: data});
 }
 
+controller.xlsx = async (req, res) => {
+    const query = 'SELECT R.id, R.role FROM roles R';
+    const data = await sequelize.query(query)
+    .then(function(data) {
+        return data;
+    })
+    .catch(error => {
+        return error;
+    })
+
+    res.json({success: true, data: data});
+}
+
 controller.update = async (req, res) => {
     const { id } = req.params;
     const {role} = req.body;

@@ -53,6 +53,19 @@ controller.get = async (req, res) => {
     res.json({success: true, data: data});
 }
 
+controller.xlsx = async (req, res) => {
+    const query = 'SELECT * FROM States';
+    const data = await sequelize.query(query)
+    .then(function(data) {
+        return data;
+    })
+    .catch(error => {
+        return error;
+    })
+
+    res.json({success: true, data: data});
+}
+
 controller.update = async (req, res) => {
     const { id } = req.params;
     const {state, fu} = req.body;
