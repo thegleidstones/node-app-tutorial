@@ -68,7 +68,6 @@ controller.list = async (req, res) => {
         ]
     })
     .then(function(data) {
-        console.log(data);
         return data;
     })
     .catch(error => {
@@ -146,6 +145,7 @@ controller.delete = async (req, res) => {
     res.json({success: true, deleted: del, message: "Excluído com sucesso!"});
 }
 
+/*
 State.create({
     state:  'GOIAS',
     fu: 'GO'
@@ -170,5 +170,5 @@ Employee.create({
     roleId:1,
     cityId: 4
 });
-
+*/
 module.exports = controller;

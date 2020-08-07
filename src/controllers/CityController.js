@@ -72,9 +72,9 @@ controller.xlsx = async (req, res) => {
 
 controller.update = async (req, res) => {
     const { id } = req.params;
-    const {name, state} = req.body;
+    const {city, state} = req.body;
     const data = await City.update({
-        name: name,
+        name: city,
         stateId: state
     },
     {    
